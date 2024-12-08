@@ -1,0 +1,43 @@
+# misc
+**/.idea/
+*.log
+.DS_Store
+*.pem
+*.swp
+/.vscode
+/.zed
+*.code-workspace
+*.local
+
+# Cargo
+**/debug
+**/target
+*.rs.bk
+
+# npm
+**/node_modules/
+**/.swc
+/.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage
+lerna-debug.log
+npm-debug.log
+junit.xml
+package-lock.json
+*.tsbuildinfo
+
+# testing
+/coverage
+
+# next.js
+/.next
+/out
+.vercel
+
+# build
+**/build/
+**/target/
+**/out/

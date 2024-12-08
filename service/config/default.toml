@@ -1,0 +1,5 @@
+[distribution]
+name = "feed_service"
+
+[server]
+grpc_address = "0.0.0.0:9000"

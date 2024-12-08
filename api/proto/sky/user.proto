@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package sky;
+
+service UserService {
+  rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
+}
+
+message SignUpRequest {
+  string name = 1;
+  string password = 2;
+}
+
+message SignUpResponse {
+  string user_id = 1;
+}

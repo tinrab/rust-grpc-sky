@@ -1,0 +1,22 @@
+[package]
+name = "grpc_sky_api"
+publish = false
+edition = "2021"
+
+[lib]
+name = "grpc_sky_api"
+path = "src/lib.rs"
+
+[dependencies]
+thiserror = "2.0.5"
+prost = "0.13.4"
+tonic = { version = "0.12.3", features = ["prost"] }
+serde = { version = "1.0.215", features = ["derive"] }
+serde_json = "1.0.133"
+regex = "1.11.1"
+paste = "1.0.15"
+bomboni_proto = "0.1.61"
+bomboni_request = { version = "0.1.61", features = ["derive"] }
+
+[build-dependencies]
+tonic-build = "0.12.3"
