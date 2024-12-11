@@ -144,7 +144,6 @@ macro_rules! convert_sky_error_reason {
             SkyErrorReason::$kind(parsed_reason) => {
                 domain_reason = parsed_reason;
             }
-            _ => unreachable!(),
         }
         (domain_reason, common_reason)
     }};
@@ -440,23 +439,18 @@ mod tests {
         let err = UserError::new(UserErrorReason::InvalidName).with_user_name("tester");
         assert_eq!(
             err.to_string(),
-            r#"USER_ERROR_REASON_USER_INVALID_NAME: {"userName": "tester"}"#
-        );
-
-        println!(
-            "{}",
-            serde_json::to_string_pretty(&err.clone().into_status()).unwrap()
+            r#"USER_ERROR_REASON_INVALID_NAME: {"userName": "tester"}"#
         );
 
         assert_eq!(
             serde_json::to_value(&err.clone().into_status()).unwrap(),
             json!({
                 "code": "INVALID_ARGUMENT",
-                "message": r#"USER_ERROR_REASON_USER_INVALID_NAME: {"userName": "tester"}"#,
+                "message": r#"USER_ERROR_REASON_INVALID_NAME: {"userName": "tester"}"#,
                 "details": [
                     {
                         "@type": "type.googleapis.com/google.rpc.ErrorInfo",
-                        "reason": "USER_ERROR_REASON_USER_INVALID_NAME",
+                        "reason": "USER_ERROR_REASON_INVALID_NAME",
                         "domain": "sky.example.com/User",
                         "metadata": {
                             "userName": "tester"

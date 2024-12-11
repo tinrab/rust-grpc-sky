@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:9.1.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - sky
+    restart: always
+    environment:
+      MYSQL_DATABASE: sky
+      MYSQL_ROOT_PASSWORD: abc123456
+      MYSQL_USER: sky
+      MYSQL_PASSWORD: sky123456
+  db-migrate:
+    image: sky/db-migrate
+    build:
+      context: ./db
+      dockerfile: migrate.dockerfile
+    container_name: db-migrate
+    networks:
+      - sky
+    depends_on:
+      - mysql
+    restart: on-failure
+
+networks:
+  sky:
+    driver: bridge
+    name: sky

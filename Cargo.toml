@@ -2,3 +2,9 @@
 resolver = "2"
 
 members = ["api", "service"]
+
+[workspace.dependencies]
+bomboni_common = "0.1.62"
+bomboni_prost = "0.1.62"
+bomboni_proto = "0.1.62"
+bomboni_request = "0.1.62"

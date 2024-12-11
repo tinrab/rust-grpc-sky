@@ -1,4 +1,4 @@
-use bomboni_request::error::RequestError;
+use bomboni_request::error::{CommonError, RequestError};
 use thiserror::Error;
 use tonic::{transport, Code, Status};
 use tracing::error;
@@ -28,7 +28,7 @@ macro_rules! impl_internal_errors {
         )*
     };
 }
-impl_internal_errors![config::ConfigError, transport::Error];
+impl_internal_errors![config::ConfigError, transport::Error, mysql_async::Error];
 
 macro_rules! impl_request_errors {
     ( $( $type:ty ),* $(,)? ) => {
@@ -41,7 +41,7 @@ macro_rules! impl_request_errors {
         )*
     };
 }
-impl_request_errors!(UserError);
+impl_request_errors!(UserError, CommonError);
 
 impl From<AppError> for Status {
     fn from(err: AppError) -> Self {

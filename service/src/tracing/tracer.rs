@@ -3,9 +3,8 @@ use opentelemetry_sdk::{
     propagation::TraceContextPropagator, runtime::Tokio, trace::TracerProvider,
 };
 use std::error::Error;
-use tracing_subscriber::filter::LevelFilter;
 use tracing_subscriber::fmt::format::{Format, JsonFields};
-use tracing_subscriber::prelude::*;
+use tracing_subscriber::{prelude::*, EnvFilter};
 
 pub struct Tracer;
 
@@ -22,7 +21,7 @@ impl Tracer {
         let layer = tracing_subscriber::fmt::layer()
             .event_format(Format::default().pretty())
             .fmt_fields(JsonFields::new())
-            .with_filter(LevelFilter::INFO);
+            .with_filter(EnvFilter::from_default_env());
 
         tracing_subscriber::registry().with(layer).init();
 

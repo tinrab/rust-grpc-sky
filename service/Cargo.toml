@@ -9,20 +9,22 @@ path = "src/main.rs"
 
 [dependencies]
 grpc_sky_api = { path = "../api" }
-thiserror = "2.0.5"
+thiserror = "2.0.6"
 config = "0.14.1"
-serde = "1.0.215"
-time = "0.3.37"
+serde = "1.0.216"
 tokio = { version = "1.42.0", features = ["full"] }
-
 tonic = { version = "0.12.3", features = ["prost"] }
 tonic-reflection = "0.12.3"
+mysql_async = "0.34.2"
+argon2 = "0.5.3"
+prost = "0.13.4"
 
-bomboni_proto = "0.1.61"
-bomboni_request = { version = "0.1.61", features = ["derive", "tonic"] }
+bomboni_common = { workspace = true, features = ["mysql"] }
+bomboni_proto.workspace = true
+bomboni_request = { workspace = true, features = ["derive", "tonic", "mysql"] }
 
 tracing = "0.1.41"
-tracing-subscriber = { version = "0.3.19", features = ["json"] }
+tracing-subscriber = { version = "0.3.19", features = ["json", "env-filter"] }
 tracing-opentelemetry = "0.28.0"
 tracing-futures = "0.2.5"
 opentelemetry = "0.27.1"

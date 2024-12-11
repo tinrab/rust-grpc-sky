@@ -2,8 +2,13 @@ syntax = "proto3";
 
 package sky;
 
+import "google/protobuf/empty.proto";
+import "sky/resources.proto";
+
 service UserService {
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {}
+
+  rpc GetMe(GetMeRequest) returns (User) {}
 }
 
 message SignUpRequest {
@@ -14,3 +19,5 @@ message SignUpRequest {
 message SignUpResponse {
   string user_id = 1;
 }
+
+message GetMeRequest {}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package sky;
+
+import "google/protobuf/timestamp.proto";
+import "sky/resources.proto";
+
+service PostService {
+  rpc Post(PostRequest) returns (PostResponse) {}
+
+  rpc ListPosts(ListPostsRequest) returns (ListPostsResponse) {}
+}
+
+message PostRequest {
+  string content = 1;
+}
+
+message PostResponse {
+  string post_id = 1;
+  google.protobuf.Timestamp create_time = 2;
+}
+
+message ListPostsRequest {
+  optional int32 page_size = 1;
+
+  optional string page_token = 2;
+
+  optional string filter = 3;
+
+  optional string order_by = 4;
+}
+
+message ListPostsResponse {
+  repeated Post posts = 1;
+
+  optional string next_page_token = 2;
+
+  int64 total_size = 3;
+}

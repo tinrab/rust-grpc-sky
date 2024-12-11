@@ -9,6 +9,7 @@ use serde::Deserialize;
 pub struct AppConfig {
     pub distribution: DistributionConfig,
     pub server: ServerConfig,
+    pub database: DatabaseConfig,
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -20,6 +21,18 @@ pub struct ServerConfig {
 pub struct DistributionConfig {
     pub name: String,
     pub version: String,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+#[serde(tag = "kind")]
+pub enum DatabaseConfig {
+    Memory,
+    MySql(MySqlDatabaseConfig),
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct MySqlDatabaseConfig {
+    pub connection: String,
 }
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
